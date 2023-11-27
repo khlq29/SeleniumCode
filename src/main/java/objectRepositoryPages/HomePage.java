@@ -1,5 +1,7 @@
 package objectRepositoryPages;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,6 +31,21 @@ public class HomePage extends BaseClass {
 	public WebElement getSearchBtn() {
 		return SearchBtn;
 	}
+	
+	@FindBy(xpath = "//textarea[@id='APjFqb']")
+	private WebElement GoogleSearchBtn;
+
+	public WebElement getGoogleSearchBtn() {
+		return GoogleSearchBtn;
+	}
+	
+	@FindBy(xpath = "//li[@role='presentation']")
+	private List<WebElement> AutoSugg;
+
+	public List<WebElement> getAutoSugg() {
+		return AutoSugg;
+	}
+	
 	
 	
 }
