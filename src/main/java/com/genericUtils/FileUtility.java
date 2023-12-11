@@ -1,11 +1,7 @@
 package com.genericUtils;
 
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.util.Properties;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 
 public class FileUtility {

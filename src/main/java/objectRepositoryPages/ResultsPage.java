@@ -29,8 +29,19 @@ public class ResultsPage extends BaseClass {
 		return LogIn;
 	}
 	
-	
+	@FindBy(xpath = "//*[@id=\"firmware-model-search\"]")
+	private WebElement ClkFirmSrchBar;
 
+	public WebElement getClkFirmSrchBar() {
+		return ClkFirmSrchBar;
+	}
+	
+	@FindBy(xpath = "")
+	private WebElement ClkChkUpdate;
+
+	public WebElement getClkChkUpdate() {
+		return ClkFirmSrchBar;
+	}
 	
 	
 	

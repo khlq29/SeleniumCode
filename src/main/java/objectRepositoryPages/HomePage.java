@@ -46,6 +46,11 @@ public class HomePage extends BaseClass {
 		return AutoSugg;
 	}
 	
-	
+	@FindBy(xpath = "/html/body/div[2]/section[1]/div/div/div[1]/div[1]/div[2]/div[1]/a")
+	private WebElement FirmwareSrch;
+
+	public WebElement getFirmwareSrch() {
+		return FirmwareSrch;
+	}
 	
 }

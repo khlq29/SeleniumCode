@@ -27,7 +27,8 @@ public class LearnFluentWait {
 			 driver.findElement(By.xpath("//*[@id=\"start\"]/button")).click();
 			 
 			 //Fluent wait
-			 Wait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver).withTimeout(30, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
+			 @SuppressWarnings("deprecation")
+			Wait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver).withTimeout(30, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
 			 Thread.sleep(2000);
 			 WebElement content = fluentWait.until(new Function<WebDriver, WebElement>() {
 			public WebElement apply(WebDriver driver) {
