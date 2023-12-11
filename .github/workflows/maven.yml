@@ -28,10 +28,17 @@ jobs:
         distribution: 'temurin'
         cache: maven
   
-    - name: Install Google Chrome 
-     - uses: browser-actions/setup-chrome@latest
-  - run: chrome --version
-
+ - name: Install Google Chrome
+        uses: ./
+        with:
+          chrome-version: ${{ matrix.version }}
+        id: setup-chrome
+      - if: runner.os == 'Linux' || runner.os == 'macOS'
+        run: |
+          "${{ steps.setup-chrome.outputs.chrome-path }}" --version
+      - if: runner.os == 'Windows'
+        run: |
+          (Get-Item (Get-Command "${{ steps.setup-chrome.outputs.chrome-path }}").Source).VersionInfo.ProductVersion
     - name: Build with Maven
 
       run: mvn -B package --file pom.xml test
