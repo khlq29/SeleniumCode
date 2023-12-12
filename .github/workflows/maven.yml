@@ -11,18 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-  
+
     - name: Install Google Chrome
-      uses: ./
+      uses: webfactory/ssh-agent@v0.5.0
       with:
-        chrome-version: ${{ matrix.version }}
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        ssh-known-hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
       id: setup-chrome
     - run: chmod +x ./scripts/InstallChrome.sh
     - if: runner.os == 'Linux' || runner.os == 'macOS'
@@ -31,6 +34,7 @@ jobs:
     - if: runner.os == 'Windows'
       run: |
         (Get-Item (Get-Command "${{ steps.setup-chrome.outputs.chrome-path }}").Source).VersionInfo.ProductVersion
+
     - name: Build with Maven
       run: mvn -B package --file pom.xml test
 
